@@ -16,17 +16,6 @@ Taking inpiration from Gravity forms, MT Forms provides a lot of useful hooks su
 6. Click the "Install Now" button.
 7. After the plugin has been installed, click the "Activate Plugin" button.
 
-## Usage
-
-To use MT Forms, follow these steps:
-
-1. Create a new form using the form builder.
-2. Add form elements to the form using the form builder.
-3. Customize the form settings as desired.
-4. Save the form.
-5. Copy the shortcode for the form.
-6. Paste the shortcode into the post or page where you want the form to appear.
-7. Preview the post or page to view the form.
 
 ## Features
 
@@ -143,10 +132,10 @@ For example, if you have a form with an ID of 1, the hooks and filters will be:
 * mt_form_data_1
 * mt_form_after_process_1
 
-## Contributing
+## Contributing[README.md](..%2F..%2F..%2F..%2FMT-forms%2FREADME.md)
 
 Contributions are welcome! If you find a bug or have a feature request, please create an issue or submit a pull request.
 
-## License
+## License 
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). See the [LICENSE](LICENSE) file for details.
