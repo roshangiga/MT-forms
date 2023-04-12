@@ -131,7 +131,7 @@ For example, if you have a form with an ID of 1, the hooks and filters will be:
 * mt_form_data_1
 * mt_form_after_process_1
 
-## Contributing[README.md](..%2F..%2F..%2F..%2FMT-forms%2FREADME.md)
+## Contributing
 
 Contributions are welcome! If you find a bug or have a feature request, please create an issue or submit a pull request.
 
