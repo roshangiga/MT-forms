@@ -21,7 +21,6 @@ Taking inpiration from Gravity forms, MT Forms provides a lot of useful hooks su
 
 MT Forms includes the following features:
 
-- Form builder with drag-and-drop interface.
 - Support for a wide range of form elements, including text inputs, checkboxes, radio buttons, select boxes, and more.
 - Customizable form settings, including form action, method, and enctype.
 - Built-in form validation and error handling.
