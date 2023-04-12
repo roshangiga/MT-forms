@@ -1,8 +1,7 @@
 # MT Forms
 
-MT Forms is a developer-focused WordPress plugin that provides an easy-to-use form builder to speed-up development. 
-You can quickly create forms programmatically in templates or shortcodes. You can specify default values, validation rules, and other attributes for each form element.
-It is easy to extend & to create custom elements.
+MT Forms is a developer-focused WordPress plugin that provides an easy-to-use form builder to speed-up development in templates or shortcodes. You can specify default values, validation rules, and other attributes for each form element.
+It is easy to extend & easy to create custom elements.
 
 Taking inpiration from Gravity forms, MT Forms provides a lot of useful hooks such as before form render, after form render, before form process, after form validation, etc.
 
