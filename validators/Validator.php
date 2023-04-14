@@ -108,10 +108,8 @@ class Validator
      * @param array $errors An associative array of field names and validation error messages.
      * @return string The HTML error message.
      */
-    public
-    function display_errors($errors = null)
+    public static function display_errors($errors)
     {
-        $errors = isset($errors) ? $errors : $this->errors;
 
         if (empty($errors)) {
             return '';

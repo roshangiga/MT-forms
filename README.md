@@ -8,13 +8,12 @@ Taking inpiration from Gravity forms, MT Forms provides a lot of useful hooks su
 
 ## Installation
 
-1. Download the plugin ZIP file from the [MT Forms website](https://example.com/mt-forms).
-2. Log in to your WordPress admin panel.
-3. Navigate to Plugins → Add New.
-4. Click the "Upload Plugin" button at the top of the screen.
-5. Choose the ZIP file you downloaded in step 1.
-6. Click the "Install Now" button.
-7. After the plugin has been installed, click the "Activate Plugin" button.
+1. Download the plugin ZIP file from [GitHub](https://github.com/roshangiga/MT-forms).
+2. In WordPress admin panel, go to Plugins → Add New.
+3. Click the "Upload Plugin" button at the top of the screen.
+4. Choose the ZIP file you downloaded in step 1.
+5. Click the "Install Now" button.
+6. After the plugin has been installed, click the "Activate Plugin" button.
 
 
 ## Features
@@ -116,7 +115,7 @@ Developers can easily modify or extend the form rendering process by using any o
 * `mt_form_after_elements`: This _action_ hook is called after rendering the form elements. You can use this hook to add custom content or perform actions after the form elements are displayed.
 * `mt_form_after_render`: This _action_ hook is called after rendering the form. You can use this hook to add custom content or perform actions after the form is displayed.
 
-### 2. In the process_form() method, you can use the action/filter hooks with the form ID
+### 2. In the process_form() method, you can use the action & filter hooks with the form ID
 * `mt_form_before_process`: This _action_ hook is called after validation & before processing the form. You can use this hook to add custom content or perform actions before the form is processed.
 * `mt_form_data`: This _filter_ hook is called after validation & before processing the form. You can use this hook to manipulate (add/edit/remove) validated form data.
 * `mt_form_after_process`: This _action_ hook is called after validation & after processing the form. You can use this hook to add custom content or perform actions after the form is processed.
@@ -132,7 +131,7 @@ For example, if you have a form with an ID of 1, the hooks and filters will be:
 * mt_form_data_1
 * mt_form_after_process_1
 
-## Contributing[README.md](..%2F..%2F..%2F..%2FMT-forms%2FREADME.md)
+## Contributing
 
 Contributions are welcome! If you find a bug or have a feature request, please create an issue or submit a pull request.
 

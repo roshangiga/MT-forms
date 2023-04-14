@@ -7,8 +7,10 @@
  * Author URI: https://github.com/roshangiga
  */
 
-// Include the autoloader.
+// Include files
 require_once __DIR__ . '/autoload.php';
+require_once __DIR__ . '/includes/Utils.php';
 
 // Import required classes.
 require_once __DIR__ . '/MT_Form_Builder.php';
+

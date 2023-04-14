@@ -75,7 +75,7 @@ class MT_Form_Builder
     public function add_element($element_type, $args)
     {
         // Initialize variables
-        $value = $label = $attributes = $validation_rules = null;
+        $value = $label = $attributes = $validation_rules = $file = null;
 
         // Instantiate element if it exists
         // always capitalize $element_type
@@ -92,11 +92,12 @@ class MT_Form_Builder
         // args should contain label, value, attributes[], validation_rules
         extract($args, EXTR_OVERWRITE);
 
-        $element = new $namespacedElementClassName($attributes, $this->form_id);
+        $element = new $namespacedElementClassName($attributes, $this->form_id, $file);
 
-        $element->label($label);                       // args can contain label
-        $element->value($value);                       // args can contain value
-        $element->validation_rules($validation_rules); // args can contain validation_rules
+
+        $element->setLabel($label);                       // args can contain label
+        $element->setValue($value);                       // args can contain value
+        $element->setValidationRules($validation_rules);  // args can contain validation_rules
 
         // Add the element in the elements list of the form.
         $this->elements[] = $element;
@@ -128,16 +129,12 @@ class MT_Form_Builder
 
         // Merge default attributes with the provided attributes
         // Ref: https://developer.wordpress.org/reference/functions/shortcode_atts/
-        $atts = shortcode_atts(array('id'            => 'mt-form-' . $this->form_id,
-                                     'class'         => 'mt-form',
-                                     'method'        => 'post',
-                                     'action'        => '',
-                                     'enctype'       => '',
-                                     'submit_button' => true, // Show submit_button e.g. to not display use $form->render_form(array('submit_button' => false))
-                                     ), $atts);
+        $atts = array_merge(
+              array('id' => 'mt-form-' . $this->form_id, 'class' => 'mt-form', 'method' => 'post', 'action' => '', 'enctype' => '',)
+            , $atts);
 
-         // Start the output buffer
-         ob_start();
+        // Start the output buffer
+        ob_start();
 
         // Render the form opening tag
         //echo '<form id="' . esc_attr($atts['id']) . '" class="' . esc_attr($atts['class']) . '" method="' . esc_attr($atts['method']) . '" action="' . esc_attr($atts['action']) . '" enctype="' . esc_attr($atts['enctype']) . '">';
@@ -148,6 +145,8 @@ class MT_Form_Builder
                      esc_attr($atts['action']) ?: esc_url($_SERVER['REQUEST_URI']),
                      esc_attr($atts['enctype']) ?: 'multipart/form-data'
         );
+
+        echo '<div class="mt-form-container">';
 
         // Render the nonce field
         wp_nonce_field('mt_form_nonce', 'mt_form_nonce');
@@ -170,11 +169,12 @@ class MT_Form_Builder
 
         // Render the submit button if the submit_button attribute is set to true
         if ($atts['submit_button']) {
+            echo '<div></div>';
             echo '<input type="submit" class="mt-form-submit" value="Submit">';
         }
 
         // Render the form closing tag
-        echo '</form>';
+        echo '</div></form>';
 
         // Get the output buffer contents and end the buffer
         $output = ob_get_clean();
@@ -184,6 +184,8 @@ class MT_Form_Builder
 
         // Echo then Return the form HTML
         echo $output;
+
+
         return $output;
     }
 
@@ -243,9 +245,9 @@ class MT_Form_Builder
         foreach ($this->elements as $element) {
 
             // Check if the element has a validation rule
-            if (isset($element->attributes['validation']) && !empty($element->attributes['validation'])) {
+            if (isset($element->validation_rules) && !empty($element->validation_rules)) {
                 $field_name = $element->attributes['name'];
-                $rules[$field_name] = $element->attributes['validation'];
+                $rules[$field_name] = $element->validation_rules;
             }
         }
 
@@ -255,6 +257,7 @@ class MT_Form_Builder
             $inputs[$field_name] = isset($_POST[$field_name]) ? $_POST[$field_name] : null;
         }
 
+
         // Create a new Validator instance and validate the inputs
         $validator = new Validator($rules, $inputs);
         $errors = $validator->validate();
@@ -263,6 +266,23 @@ class MT_Form_Builder
         if (!empty($errors)) {
             throw new Validation_Exception('Validation failed', $errors);
         }
+    }
+
+    /**
+     * @throws Style_Exception If the CSS file is not found
+     */
+    public function set_css_style_file($filename) {
+        $css_path = plugin_dir_path(__FILE__) . 'includes/css/' . $filename;
+
+        if (!file_exists($css_path)) {
+            throw new Style_Exception("CSS file '{$css_path}'. Maybe check spelling or CSS missing?");
+        }
+
+        $css_contents = file_get_contents($css_path);
+
+        //output the css
+        echo '<style>' . Utils::minify_css($css_contents) . '</style>';
+
     }
 
 }
